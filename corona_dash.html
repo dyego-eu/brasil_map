@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+path {
+  fill: rgb(0, 128, 0);
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+path.clicked {
+    fill: rgb(0, 80, 0);
+}
+
+#parent{
+  display:flex;
+  flex-direction: row;
+}
+#m{
+  background-color: rgb(243, 243, 243);
+  border-style:solid;
+  border-color: rgb(0, 80, 0);;
+  border-radius: 20px;
+  
+  min-width:500px;
+  height:500px;
+  margin:10px;
+}
+#other{
+  background-color: rgb(243, 243, 243);
+  margin:50px;
+  border-style:solid;
+  border-color: rgb(0, 80, 0);;
+  border-radius: 20px;
+  min-width: 760px;
+  width:760px;
+  height:460px;
+  margin:10px;
+  padding:20px;
+}
+#controls{
+  background-color: rgb(243, 243, 243);
+  display:flex;
+  border-style:solid;
+  border-color: rgb(0, 80, 0);
+  border-radius: 20px;
+  width: 1285px;
+  height:50px;
+  margin-left:10px;
+  margin-right:10px;
+  padding:20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: rgb(0, 128, 0);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(0, 128, 0);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider-control{
+  display:flex;
+  font-size: 30px;
+  font-family:'Montserrat';
+  align-items: center;
+}
+
+#scale-selector{
+  flex-direction:column;
+  align-items: center;
+}
+h1{
+  text-align:center;
+  font-family: 'Montserrat';
+  font-weight:900;
+  font-size:xx-large;
+}
+#footer{
+  font-size:10pt;
+  text-align:right;
+}
+</style>
+
+<body>
+  <h1>Gráficos Corona Virus Situação Brasileira</h1> 
+  <div id='controls'>
+    
+  <div class='slider-control' style='flex-grow: 3'>
+    <div id='scale-selector'>
+      <div><b>Escala</b></div>
+      <div>
+    Linear
+    <label class="switch">
+      <input type="checkbox", id='myCheckbox_1'>
+      <span class="slider round"></span>
+    </label>
+    Logarítmica
+  </div>
+  </div>
+  </div>
+<div style='flex-grow: 5'></div>
+<div class='slider-control' style='flex-grow: 3'>
+  <div id='scale-selector'>
+    <div><b>Tipo de Gráfico</b></div>
+    <div>
+  # Casos
+  <label class="switch">
+    <input type="checkbox", id='myCheckbox_2'>
+    <span class="slider round"></span>
+  </label>
+  # Mortos
+</div>
+</div>
+</div>
+  </div>
+
+  <div id='parent'>
+    <div id='m', style='z-index:1'></div>
+    <div id='other'></div>
+  </div>
+  
+  <div id='footer'>Feito por Dyego Soares - Última Atualização: 3 de Abril de 2020</div> 
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3-geo-projection/2.4.0/d3-geo-projection.min.js'></script>
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.15.1/d3.min.js"></script>
+    <script src='dash.js'></script>
+     
+</body>    
